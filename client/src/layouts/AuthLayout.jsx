@@ -1,3 +1,5 @@
+import HoloSphere3D from '../components/HoloSphere3D'
+
 export default function AuthLayout({ children }) {
   return (
     <div className="auth-page">
@@ -13,6 +15,12 @@ export default function AuthLayout({ children }) {
         <p className="auth-left-sub">
           Collect feedback, track bugs, manage your roadmap — all in one beautifully simple platform.
         </p>
+
+        {/* 3D Holographic Interactive Core */}
+        <div style={{ margin: '1.25rem 0', display: 'flex', alignItems: 'center' }}>
+          <HoloSphere3D size={135} interactive={true} showRing={true} />
+        </div>
+
         <div className="auth-features">
           {[
             'Centralized product feedback board',

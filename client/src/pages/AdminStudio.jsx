@@ -32,7 +32,15 @@ function formatDate(d) {
 function StatCard({ icon: Icon, label, value, color }) {
   return (
     <div className="stat-card">
-      <div className="stat-card-icon" style={{ backgroundColor: color + '20', color }}>
+      <div
+        className="stat-card-icon"
+        style={{
+          backgroundColor: color + '20',
+          color,
+          boxShadow: `0 0 15px ${color}40`,
+          border: `1px solid ${color}50`
+        }}
+      >
         <Icon size={22} />
       </div>
       <div>
@@ -174,10 +182,10 @@ export default function AdminStudio() {
       {activeTab === 'overview' && (
         <div className="admin-section">
           <div className="stats-grid">
-            <StatCard icon={Users} label="Total Users" value={stats?.totalUsers} color="#4F46E5" />
-            <StatCard icon={MessageSquare} label="Total Feedback" value={stats?.totalFeedback} color="#0EA5E9" />
-            <StatCard icon={Bug} label="Total Bugs" value={stats?.openBugs} color="#EF4444" />
-            <StatCard icon={TrendingUp} label="Completed Items" value={stats?.completedItems} color="#10B981" />
+            <StatCard icon={Users} label="Total Users" value={stats?.totalUsers} color="#00d2ff" />
+            <StatCard icon={MessageSquare} label="Total Feedback" value={stats?.totalFeedback} color="#b388ff" />
+            <StatCard icon={Bug} label="Total Bugs" value={stats?.openBugs} color="#ff3366" />
+            <StatCard icon={TrendingUp} label="Completed Items" value={stats?.completedItems} color="#06d6a0" />
           </div>
 
           <div className="admin-two-col">

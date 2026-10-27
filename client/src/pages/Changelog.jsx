@@ -16,12 +16,12 @@ import { BookOpen, Plus, Edit2, Trash2, X, ChevronDown, ChevronUp } from 'lucide
 const CATEGORIES = ['Feature', 'Improvement', 'Bug Fix', 'Performance', 'Security', 'Breaking Change']
 
 const CATEGORY_COLORS = {
-  Feature: '#4F46E5',
-  Improvement: '#0EA5E9',
-  'Bug Fix': '#10B981',
-  Performance: '#F59E0B',
-  Security: '#EF4444',
-  'Breaking Change': '#DC2626',
+  Feature: '#00d2ff',
+  Improvement: '#00f5ff',
+  'Bug Fix': '#06d6a0',
+  Performance: '#ffd166',
+  Security: '#ff007f',
+  'Breaking Change': '#ff3366',
 }
 
 function formatDate(d) {

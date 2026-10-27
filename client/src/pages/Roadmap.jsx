@@ -10,10 +10,10 @@ import { getRoadmap, updateRoadmapStatus } from '../services/api'
 import { Map, ThumbsUp } from 'lucide-react'
 
 const COLUMNS = [
-  { key: 'Planned', label: 'Planned', color: '#8B5CF6' },
-  { key: 'Under Review', label: 'Under Review', color: '#F59E0B' },
-  { key: 'In Progress', label: 'In Progress', color: '#3B82F6' },
-  { key: 'Completed', label: 'Completed', color: '#10B981' },
+  { key: 'Planned', label: 'Planned', color: '#b388ff' },
+  { key: 'Under Review', label: 'Under Review', color: '#ffd166' },
+  { key: 'In Progress', label: 'In Progress', color: '#00d2ff' },
+  { key: 'Completed', label: 'Completed', color: '#06d6a0' },
 ]
 
 const STATUS_OPTIONS = ['Planned', 'Under Review', 'In Progress', 'Completed', 'Declined']

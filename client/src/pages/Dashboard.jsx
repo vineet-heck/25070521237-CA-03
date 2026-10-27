@@ -16,6 +16,7 @@ import { getDashboardSummary } from '../services/api'
 import { useAuth } from '../context/AuthContext'
 import StatusBadge from '../components/StatusBadge'
 import LoadingSpinner from '../components/LoadingSpinner'
+import CyberHeroBanner from '../components/CyberHeroBanner'
 
 function formatDate(dateStr) {
   if (!dateStr) return ''
@@ -95,6 +96,9 @@ export default function Dashboard() {
         <LoadingSpinner />
       ) : (
         <>
+          {/* Cyber Deck Telemetry & 3D Interactive Core */}
+          <CyberHeroBanner userName={user?.name} />
+
           {/* Stat Cards Grid */}
           <div className="stats-grid mb-6">
             <StatCard
@@ -158,7 +162,7 @@ export default function Dashboard() {
                           transition: 'background 0.15s ease',
                         }}
                         onClick={() => navigate(`/feedback/${fb._id || fb.id}`)}
-                        onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--bg)')}
+                        onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(0, 210, 255, 0.08)')}
                         onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
                       >
                         <div style={{ flex: 1, minWidth: 0 }}>
@@ -231,14 +235,15 @@ export default function Dashboard() {
                           transition: 'background 0.15s ease',
                         }}
                         onClick={() => navigate(`/feedback/${fb._id || fb.id}`)}
-                        onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--bg)')}
+                        onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(0, 210, 255, 0.08)')}
                         onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
                       >
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flex: 1, minWidth: 0 }}>
                           <span style={{
                             fontSize: '0.82rem',
                             fontWeight: 700,
-                            color: i === 0 ? '#F59E0B' : i === 1 ? '#6B7280' : '#B45309',
+                            color: i === 0 ? '#ffd166' : i === 1 ? '#00f5ff' : '#00d2ff',
+                            textShadow: i === 0 ? '0 0 8px rgba(255, 209, 102, 0.6)' : '0 0 8px rgba(0, 245, 255, 0.5)',
                             width: '22px',
                             textAlign: 'center',
                             flexShrink: 0,
@@ -262,7 +267,8 @@ export default function Dashboard() {
                           fontWeight: 700,
                           color: 'var(--primary)',
                           background: 'var(--primary-light)',
-                          border: '1px solid rgba(85, 88, 217, 0.18)',
+                          border: '1px solid rgba(0, 210, 255, 0.35)',
+                          boxShadow: '0 0 8px rgba(0, 210, 255, 0.25)',
                           borderRadius: '999px',
                           padding: '0.2rem 0.65rem',
                           display: 'flex',
@@ -295,10 +301,10 @@ export default function Dashboard() {
                 <div className="card-body" style={{ padding: '1.25rem' }}>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                     {[
-                      { key: 'Planned', label: 'Planned', count: data?.roadmapStats?.Planned ?? 0, color: '#8B5CF6' },
-                      { key: 'In Progress', label: 'In Progress', count: data?.roadmapStats?.['In Progress'] ?? 0, color: '#3B82F6' },
-                      { key: 'Under Review', label: 'Under Review', count: data?.roadmapStats?.['Under Review'] ?? 0, color: '#F59E0B' },
-                      { key: 'Completed', label: 'Completed', count: data?.roadmapStats?.Completed ?? 0, color: '#10B981' },
+                      { key: 'Planned', label: 'Planned', count: data?.roadmapStats?.Planned ?? 0, color: '#b388ff' },
+                      { key: 'In Progress', label: 'In Progress', count: data?.roadmapStats?.['In Progress'] ?? 0, color: '#00d2ff' },
+                      { key: 'Under Review', label: 'Under Review', count: data?.roadmapStats?.['Under Review'] ?? 0, color: '#ffd166' },
+                      { key: 'Completed', label: 'Completed', count: data?.roadmapStats?.Completed ?? 0, color: '#06d6a0' },
                     ].map((col) => (
                       <div
                         key={col.key}
@@ -316,12 +322,14 @@ export default function Dashboard() {
                         onClick={() => navigate('/roadmap')}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.borderColor = col.color
-                          e.currentTarget.style.background = '#FFFFFF'
+                          e.currentTarget.style.background = 'rgba(11, 17, 44, 0.95)'
+                          e.currentTarget.style.boxShadow = `0 0 12px ${col.color}40`
                           e.currentTarget.style.transform = 'translateX(3px)'
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.borderColor = 'var(--border)'
                           e.currentTarget.style.background = 'var(--bg)'
+                          e.currentTarget.style.boxShadow = 'none'
                           e.currentTarget.style.transform = 'none'
                         }}
                       >
@@ -385,7 +393,7 @@ export default function Dashboard() {
                           transition: 'background 0.15s ease',
                         }}
                         onClick={() => navigate('/changelog')}
-                        onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--bg)')}
+                        onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(0, 210, 255, 0.08)')}
                         onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
                       >
                         <div
