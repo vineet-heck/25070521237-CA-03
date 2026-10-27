@@ -112,11 +112,19 @@ export default function DashboardLayout({ children }) {
             ))}
 
             {/* "More" Dropdown for secondary pages */}
-            <div className="topnav-dropdown-wrapper" ref={moreRef}>
+            <div
+              className="topnav-dropdown-wrapper"
+              ref={moreRef}
+              onMouseDown={(e) => e.stopPropagation()}
+            >
               <button
                 type="button"
                 className={`topnav-link topnav-dropdown-trigger${isMoreActive ? ' active' : ''}`}
-                onClick={() => setMoreOpen((o) => !o)}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setMoreOpen((o) => !o)
+                  setUserMenuOpen(false)
+                }}
                 aria-expanded={moreOpen}
               >
                 <span>More</span>
@@ -171,11 +179,19 @@ export default function DashboardLayout({ children }) {
             </button>
 
             {/* Profile Menu Dropdown */}
-            <div className="user-menu-wrapper" ref={userMenuRef}>
+            <div
+              className="user-menu-wrapper"
+              ref={userMenuRef}
+              onMouseDown={(e) => e.stopPropagation()}
+            >
               <button
                 type="button"
                 className="user-menu-button"
-                onClick={() => setUserMenuOpen((o) => !o)}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setUserMenuOpen((o) => !o)
+                  setMoreOpen(false)
+                }}
                 aria-expanded={userMenuOpen}
                 aria-label="User menu"
               >

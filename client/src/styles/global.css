@@ -1238,14 +1238,15 @@ ul, ol {
   top: calc(100% + 8px);
   left: 0;
   width: 220px;
-  background: rgba(11, 17, 44, 0.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 210, 255, 0.22);
+  background: rgba(11, 17, 44, 0.98) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 210, 255, 0.28) !important;
   border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 210, 255, 0.15);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 210, 255, 0.2) !important;
   padding: 0.5rem;
-  z-index: 150;
+  z-index: 1050 !important;
+  pointer-events: auto !important;
   animation: fadeInDown 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1381,14 +1382,15 @@ ul, ol {
   top: calc(100% + 8px);
   right: 0;
   width: 260px;
-  background: rgba(11, 17, 44, 0.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 210, 255, 0.22);
+  background: rgba(11, 17, 44, 0.98) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 210, 255, 0.28) !important;
   border-radius: 12px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 210, 255, 0.15);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 210, 255, 0.2) !important;
   padding: 0.5rem;
-  z-index: 150;
+  z-index: 1050 !important;
+  pointer-events: auto !important;
   animation: fadeInDown 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -3183,8 +3185,10 @@ ul, ol {
     radial-gradient(circle at 85% 70%, rgba(0, 102, 255, 0.05) 0%, transparent 35%),
     radial-gradient(circle at 50% 90%, rgba(139, 92, 246, 0.04) 0%, transparent 30%);
 }
-.auth-page > *,
-.app-shell > * { position: relative; z-index: 1; }
+.auth-page > * { position: relative; z-index: 1; }
+.app-shell > header.topnav { position: sticky; top: 0; z-index: 1000 !important; }
+.app-shell > main.main-content-wrapper { position: relative; z-index: 2; }
+.app-shell > footer.app-footer { position: relative; z-index: 2; }
 
 /* Floating 3D Orb 1 — top-right corner */
 .app-shell::before {
