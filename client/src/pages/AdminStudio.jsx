@@ -6,6 +6,7 @@ import { useToast } from '../context/ToastContext'
 import {
   getAdminStats,
   getAdminUsers,
+  getBugs,
   adminUpdateFeedbackStatus,
   adminUpdateBugStatus,
   getChangelog,
@@ -76,9 +77,8 @@ export default function AdminStudio() {
         bugsBySeverity: Object.entries(s.bugsBySeverity || {}).map(([k, v]) => ({ _id: k, count: v })),
       })
       setFeedbackList(s.recentActivity || [])
-      // Load bugs separately (getBugs)
+      // Load bugs
       try {
-        const { getBugs } = await import('../services/api')
         const bugsRes = await getBugs({})
         setBugList(bugsRes.data || [])
       } catch { setBugList([]) }
