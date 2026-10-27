@@ -55,7 +55,7 @@ Install Node.js, MongoDB Community Server, and MongoDB Compass.
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/25070521237-CA-03.git
+git clone https://github.com/vineet-heck/25070521237-CA-03.git
 cd 25070521237-CA-03
 ```
 
