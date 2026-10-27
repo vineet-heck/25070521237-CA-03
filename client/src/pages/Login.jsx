@@ -40,7 +40,11 @@ export default function Login() {
       login(token, user)
       navigate('/dashboard', { replace: true })
     } catch (err) {
-      setApiError(err.response?.data?.message || 'Invalid email or password.')
+      if (!err.response) {
+        setApiError('Cannot connect to backend server. Is "npm run dev" running in the server folder?')
+      } else {
+        setApiError(err.response?.data?.message || 'Invalid email or password.')
+      }
     } finally {
       setLoading(false)
     }

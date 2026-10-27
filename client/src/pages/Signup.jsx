@@ -43,7 +43,11 @@ export default function Signup() {
       setSuccess(true)
       setTimeout(() => navigate('/login'), 2500)
     } catch (err) {
-      setApiError(err.response?.data?.message || 'Registration failed. Please try again.')
+      if (!err.response) {
+        setApiError('Cannot connect to backend server. Is "npm run dev" running in the server folder?')
+      } else {
+        setApiError(err.response?.data?.message || 'Registration failed. Please try again.')
+      }
     } finally {
       setLoading(false)
     }

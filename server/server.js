@@ -27,10 +27,20 @@ connectDB();
 const app = express();
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
-// Allow requests from the Vite development servers
+// Allow requests from Vite development servers (localhost and 127.0.0.1, any local port)
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174'],
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, curl, or server-to-server)
+      if (!origin) return callback(null, true);
+      if (
+        origin.startsWith('http://localhost') ||
+        origin.startsWith('http://127.0.0.1')
+      ) {
+        return callback(null, true);
+      }
+      callback(new Error('Not allowed by CORS'));
+    },
     credentials: true,
   })
 );
