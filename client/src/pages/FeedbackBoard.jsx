@@ -73,23 +73,23 @@ export default function FeedbackBoard() {
         />
 
         <select
-          className="form-select"
+          className="form-select filter-select"
           style={{ width: 'auto' }}
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           aria-label="Filter by category"
         >
-          {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+          {CATEGORIES.map((c) => <option key={c} value={c}>{c === 'All' ? 'All Categories' : c}</option>)}
         </select>
 
         <select
-          className="form-select"
+          className="form-select filter-select"
           style={{ width: 'auto' }}
           value={status}
           onChange={(e) => setStatus(e.target.value)}
           aria-label="Filter by status"
         >
-          {STATUSES.map((s) => <option key={s}>{s}</option>)}
+          {STATUSES.map((s) => <option key={s} value={s}>{s === 'All' ? 'All Statuses' : s}</option>)}
         </select>
 
         <select

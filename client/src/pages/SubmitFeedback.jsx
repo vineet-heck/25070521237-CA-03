@@ -96,7 +96,7 @@ export default function SubmitFeedback() {
                   value={form.category} onChange={handleChange}
                 >
                   <option value="">Select a category</option>
-                  {CATEGORIES.map((c) => <option key={c} value={c.toLowerCase()}>{c}</option>)}
+                  {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
                 </select>
                 {errors.category && <span className="form-error">{errors.category}</span>}
               </div>

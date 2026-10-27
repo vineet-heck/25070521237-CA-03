@@ -150,7 +150,7 @@ export default function Changelog() {
                 <div className="form-group">
                   <label className="form-label">Category *</label>
                   <select className="form-select" value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))}>
-                    {CATEGORIES.map(c => <option key={c}>{c}</option>)}
+                    {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
                 </div>
               </div>

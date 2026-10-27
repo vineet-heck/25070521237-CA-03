@@ -4,6 +4,7 @@
 
 /* --- CSS Variables --- */
 :root {
+  color-scheme: dark;
   /* Color Palette (Dark Blue & Black Cyberpunk / Software Dev) */
   --bg-primary: #020412;
   --bg-surface: #0b112c;
@@ -336,7 +337,6 @@ ul, ol {
 }
 
 .form-input,
-.form-select,
 .form-textarea {
   width: 100%;
   padding: 0.625rem 0.875rem;
@@ -347,6 +347,27 @@ ul, ol {
   border-radius: var(--radius);
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   outline: none;
+}
+
+.form-select {
+  width: 100%;
+  padding: 0.625rem 2.25rem 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  color: #ffffff !important;
+  background-color: #0b112c !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2300d2ff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.75rem center !important;
+  background-size: 14px 14px !important;
+  border: 1px solid rgba(0, 210, 255, 0.25) !important;
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color-scheme: dark;
 }
 
 .form-input::placeholder,
@@ -2237,8 +2258,11 @@ ul, ol {
 
 .roadmap-status-select {
   font-size: 0.75rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0.25rem 1.6rem 0.25rem 0.5rem;
   height: auto;
+  background-position: right 0.4rem center !important;
+  background-size: 11px 11px !important;
+  width: auto;
 }
 
 .roadmap-empty {
@@ -2828,9 +2852,11 @@ ul, ol {
 
 .table-select {
   font-size: 0.8125rem;
-  padding: 0.25rem 0.625rem;
+  padding: 0.35rem 1.75rem 0.35rem 0.65rem;
   height: auto;
   min-width: 130px;
+  background-position: right 0.5rem center !important;
+  background-size: 12px 12px !important;
 }
 
 .admin-inline-form {
@@ -3375,10 +3401,27 @@ body::before {
   color: #cbd5e1 !important;
 }
 
-/* --- Select dropdowns dark fix --- */
+/* --- Select & Option Dropdowns Dark Theme Styling --- */
+select,
+option,
+optgroup,
 .form-select option {
-  background: #0b112c;
-  color: #ffffff;
+  background-color: #0b112c !important;
+  color: #ffffff !important;
+  font-size: 0.9375rem;
+  padding: 0.5rem;
+  color-scheme: dark;
+}
+
+select option:hover,
+select option:focus,
+select option:checked {
+  background-color: #00d2ff !important;
+  color: #020412 !important;
+}
+
+input[type="date"] {
+  color-scheme: dark;
 }
 
 /* --- Saved Items Card Glow --- */

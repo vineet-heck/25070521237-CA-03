@@ -243,7 +243,7 @@ export default function AdminStudio() {
                         disabled={updatingStatus === fb._id}
                         onChange={e => handleFeedbackStatus(fb._id, e.target.value)}
                       >
-                        {FEEDBACK_STATUSES.map(s => <option key={s}>{s}</option>)}
+                        {FEEDBACK_STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
                       </select>
                     </td>
                   </tr>
@@ -282,7 +282,7 @@ export default function AdminStudio() {
                         disabled={updatingStatus === bug._id}
                         onChange={e => handleBugStatus(bug._id, e.target.value)}
                       >
-                        {BUG_STATUSES.map(s => <option key={s}>{s}</option>)}
+                        {BUG_STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
                       </select>
                     </td>
                   </tr>
@@ -317,7 +317,7 @@ export default function AdminStudio() {
                 <div className="form-group">
                   <label className="form-label">Category</label>
                   <select className="form-select" value={clForm.category} onChange={e => setClForm(f => ({ ...f, category: e.target.value }))}>
-                    {CHANGELOG_CATS.map(c => <option key={c}>{c}</option>)}
+                    {CHANGELOG_CATS.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
                 </div>
               </div>

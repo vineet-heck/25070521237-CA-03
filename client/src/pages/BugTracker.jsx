@@ -153,11 +153,11 @@ export default function BugTracker() {
         </div>
         <select className="form-select filter-select" value={filterSeverity} onChange={e => setFilterSeverity(e.target.value)}>
           <option value="">All Severities</option>
-          {SEVERITIES.map(s => <option key={s}>{s}</option>)}
+          {SEVERITIES.map(s => <option key={s} value={s}>{s}</option>)}
         </select>
         <select className="form-select filter-select" value={filterStatus} onChange={e => setFilterStatus(e.target.value)}>
           <option value="">All Statuses</option>
-          {STATUSES.map(s => <option key={s}>{s}</option>)}
+          {STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
         </select>
       </div>
 
@@ -181,7 +181,7 @@ export default function BugTracker() {
               <div className="form-group">
                 <label className="form-label">Severity *</label>
                 <select className="form-select" value={form.severity} onChange={e => setForm(f => ({ ...f, severity: e.target.value }))}>
-                  {SEVERITIES.map(s => <option key={s}>{s}</option>)}
+                  {SEVERITIES.map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
               </div>
               <div className="form-group">
@@ -276,7 +276,7 @@ export default function BugTracker() {
                           disabled={statusUpdating === bug._id}
                           onChange={e => handleStatusChange(bug._id, e.target.value)}
                         >
-                          {STATUSES.map(s => <option key={s}>{s}</option>)}
+                          {STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
                         </select>
                       </div>
                     )}
