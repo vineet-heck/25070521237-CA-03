@@ -63,6 +63,12 @@ export default function DashboardLayout({ children }) {
     setUserMenuOpen(false)
   }, [location.pathname])
 
+  const handleNav = (to) => {
+    setMoreOpen(false)
+    setUserMenuOpen(false)
+    navigate(to)
+  }
+
   const mainNavItems = [
     { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { to: '/feedback', label: 'Feedback', icon: MessageSquare },
@@ -119,40 +125,34 @@ export default function DashboardLayout({ children }) {
 
               {moreOpen && (
                 <div className="topnav-dropdown-menu">
-                  <NavLink
-                    to="/saved"
-                    className={({ isActive }) =>
-                      `dropdown-item${isActive ? ' active' : ''}`
-                    }
-                    onClick={() => setMoreOpen(false)}
+                  <button
+                    type="button"
+                    className={`dropdown-item${location.pathname === '/saved' ? ' active' : ''}`}
+                    onClick={() => handleNav('/saved')}
                   >
                     <Bookmark size={15} />
                     <span>Saved Items</span>
-                  </NavLink>
-                  <NavLink
-                    to="/profile"
-                    className={({ isActive }) =>
-                      `dropdown-item${isActive ? ' active' : ''}`
-                    }
-                    onClick={() => setMoreOpen(false)}
+                  </button>
+                  <button
+                    type="button"
+                    className={`dropdown-item${location.pathname === '/profile' ? ' active' : ''}`}
+                    onClick={() => handleNav('/profile')}
                   >
                     <User size={15} />
                     <span>My Profile</span>
-                  </NavLink>
+                  </button>
                   {isAdmin && (
-                    <NavLink
-                      to="/admin"
-                      className={({ isActive }) =>
-                        `dropdown-item admin-item${isActive ? ' active' : ''}`
-                      }
-                      onClick={() => setMoreOpen(false)}
+                    <button
+                      type="button"
+                      className={`dropdown-item admin-item${location.pathname === '/admin' ? ' active' : ''}`}
+                      onClick={() => handleNav('/admin')}
                     >
                       <Shield size={15} />
                       <div className="flex items-center justify-between w-full">
                         <span>Admin Studio</span>
                         <span className="badge-admin-chip">Admin</span>
                       </div>
-                    </NavLink>
+                    </button>
                   )}
                 </div>
               )}
@@ -203,33 +203,33 @@ export default function DashboardLayout({ children }) {
 
                   <div className="dropdown-divider" />
 
-                  <Link
-                    to="/profile"
-                    className="dropdown-item"
-                    onClick={() => setUserMenuOpen(false)}
+                  <button
+                    type="button"
+                    className={`dropdown-item${location.pathname === '/profile' ? ' active' : ''}`}
+                    onClick={() => handleNav('/profile')}
                   >
                     <User size={15} />
                     <span>My Profile</span>
-                  </Link>
+                  </button>
 
-                  <Link
-                    to="/saved"
-                    className="dropdown-item"
-                    onClick={() => setUserMenuOpen(false)}
+                  <button
+                    type="button"
+                    className={`dropdown-item${location.pathname === '/saved' ? ' active' : ''}`}
+                    onClick={() => handleNav('/saved')}
                   >
                     <Bookmark size={15} />
                     <span>Saved Items</span>
-                  </Link>
+                  </button>
 
                   {isAdmin && (
-                    <Link
-                      to="/admin"
-                      className="dropdown-item admin-item"
-                      onClick={() => setUserMenuOpen(false)}
+                    <button
+                      type="button"
+                      className={`dropdown-item admin-item${location.pathname === '/admin' ? ' active' : ''}`}
+                      onClick={() => handleNav('/admin')}
                     >
                       <Shield size={15} />
                       <span>Admin Studio</span>
-                    </Link>
+                    </button>
                   )}
 
                   <div className="dropdown-divider" />
