@@ -48,7 +48,9 @@ export default function Changelog() {
   const fetchChangelog = useCallback(async () => {
     try {
       const res = await getChangelog()
-      setEntries(res.data)
+      // Backend returns { count, changelog: [...] }
+      const list = res.data?.changelog || (Array.isArray(res.data) ? res.data : [])
+      setEntries(list)
     } catch {
       showToast('Failed to load changelog', 'error')
     } finally {

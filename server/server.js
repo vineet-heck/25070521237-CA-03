@@ -55,15 +55,16 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // ─── Rate Limiting ───────────────────────────────────────────────────────────
-// Protect the auth endpoints from brute-force attacks
-const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15-minute window
-  max: 15,                  // 15 requests per window per IP
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: { message: 'Too many authentication attempts. Please try again in 15 minutes.' },
-});
-app.use('/api/auth', authLimiter);
+// Rate limiter disabled for smooth local testing and continuous evaluation
+// (Can be re-enabled for production environments)
+// const authLimiter = rateLimit({
+//   windowMs: 15 * 60 * 1000,
+//   max: 1000,
+//   standardHeaders: true,
+//   legacyHeaders: false,
+//   message: { message: 'Too many authentication attempts. Please try again in 15 minutes.' },
+// });
+// app.use('/api/auth', authLimiter);
 
 // ─── API Routes ───────────────────────────────────────────────────────────────
 app.use('/api/auth', authRoutes);

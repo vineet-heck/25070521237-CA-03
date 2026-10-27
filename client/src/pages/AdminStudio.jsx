@@ -80,10 +80,10 @@ export default function AdminStudio() {
       // Load bugs
       try {
         const bugsRes = await getBugs({})
-        setBugList(bugsRes.data || [])
+        setBugList(bugsRes.data?.bugs || (Array.isArray(bugsRes.data) ? bugsRes.data : []))
       } catch { setBugList([]) }
-      setUserList(usersRes.data?.users || usersRes.data || [])
-      setChangelogList(clRes.data || [])
+      setUserList(usersRes.data?.users || (Array.isArray(usersRes.data) ? usersRes.data : []))
+      setChangelogList(clRes.data?.changelog || (Array.isArray(clRes.data) ? clRes.data : []))
     } catch {
       showToast('Failed to load admin data', 'error')
     } finally {
@@ -128,7 +128,7 @@ export default function AdminStudio() {
       }
       setClForm(null)
       const res = await getChangelog()
-      setChangelogList(res.data)
+      setChangelogList(res.data?.changelog || (Array.isArray(res.data) ? res.data : []))
     } catch (err) {
       showToast(err.response?.data?.message || 'Save failed', 'error')
     }

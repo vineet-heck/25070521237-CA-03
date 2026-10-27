@@ -48,7 +48,9 @@ export default function BugTracker() {
       if (filterSeverity) params.severity = filterSeverity
       if (filterStatus) params.status = filterStatus
       const res = await getBugs(params)
-      setBugs(res.data)
+      // Backend returns { count, bugs: [...] }
+      const bugData = res.data?.bugs || (Array.isArray(res.data) ? res.data : [])
+      setBugs(bugData)
     } catch {
       showToast('Failed to load bugs', 'error')
     } finally {
