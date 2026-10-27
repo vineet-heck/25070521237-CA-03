@@ -25,7 +25,10 @@ export default function FeedbackCard({ feedback, onVote, showVoteButton = true }
   const [voting, setVoting] = useState(false)
   const [localVotes, setLocalVotes] = useState(feedback.voteCount ?? feedback.votes ?? 0)
   const [localVoted, setLocalVoted] = useState(
-    feedback.voters?.includes(user?._id || user?.id) || feedback.userVoted || false
+    feedback.votes?.some(id => (id._id || id).toString() === (user?._id || user?.id)?.toString()) ||
+    feedback.voters?.includes(user?._id || user?.id) ||
+    feedback.userVoted ||
+    false
   )
 
   const handleVote = async (e) => {
@@ -37,10 +40,11 @@ export default function FeedbackCard({ feedback, onVote, showVoteButton = true }
     setVoting(true)
     try {
       const res = await voteFeedback(feedback._id || feedback.id)
-      const updated = res.data.feedback || res.data
-      setLocalVotes(updated.voteCount ?? updated.votes ?? localVotes)
-      setLocalVoted(updated.voters?.includes(user?._id || user?.id) || !localVoted)
-      if (onVote) onVote(updated)
+      const count = res.data.voteCount ?? (res.data.feedback?.voteCount) ?? localVotes
+      const voted = res.data.voted !== undefined ? res.data.voted : !localVoted
+      setLocalVotes(count)
+      setLocalVoted(voted)
+      if (onVote) onVote(res.data.feedback || res.data)
     } catch {
       showToast('Failed to vote. Try again.', 'error')
     } finally {

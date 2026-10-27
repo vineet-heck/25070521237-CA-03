@@ -11,6 +11,8 @@ export default function StatusBadge({ status }) {
     declined: 'badge-declined',
     open: 'badge-open',
     resolved: 'badge-resolved',
+    closed: 'badge-declined',
+    'wont-fix': 'badge-declined',
     critical: 'badge-critical',
     high: 'badge-high',
     medium: 'badge-medium',

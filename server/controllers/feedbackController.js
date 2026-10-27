@@ -185,6 +185,7 @@ const voteFeedback = async (req, res) => {
       message: hasVoted ? 'Vote removed.' : 'Vote added.',
       voted: !hasVoted,
       voteCount: feedback.voteCount,
+      feedback,
     });
   } catch (error) {
     console.error('voteFeedback error:', error);

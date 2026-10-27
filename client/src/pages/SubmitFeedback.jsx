@@ -5,7 +5,16 @@ import DashboardLayout from '../layouts/DashboardLayout'
 import { createFeedback } from '../services/api'
 import { useToast } from '../context/ToastContext'
 
-const CATEGORIES = ['Feature', 'Improvement', 'Bug', 'Other']
+const CATEGORIES = [
+  'Feature Request',
+  'UI/UX Improvement',
+  'Performance',
+  'Bug Fix Request',
+  'Integration',
+  'Documentation',
+  'Accessibility',
+  'Other',
+]
 
 export default function SubmitFeedback() {
   const navigate = useNavigate()
@@ -40,7 +49,7 @@ export default function SubmitFeedback() {
       await createFeedback({
         title: form.title.trim(),
         description: form.description.trim(),
-        category: form.category.toLowerCase(),
+        category: form.category,
         tags,
       })
       showToast('Feedback submitted successfully!', 'success')

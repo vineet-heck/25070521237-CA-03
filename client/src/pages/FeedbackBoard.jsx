@@ -8,11 +8,21 @@ import EmptyState from '../components/EmptyState'
 import SearchBar from '../components/SearchBar'
 import { getFeedback } from '../services/api'
 
-const CATEGORIES = ['All', 'Feature', 'Improvement', 'Bug', 'Other']
+const CATEGORIES = [
+  'All',
+  'Feature Request',
+  'UI/UX Improvement',
+  'Performance',
+  'Bug Fix Request',
+  'Integration',
+  'Documentation',
+  'Accessibility',
+  'Other',
+]
 const STATUSES = ['All', 'Planned', 'Under Review', 'In Progress', 'Completed', 'Declined']
 const SORTS = [
   { value: 'newest', label: 'Newest' },
-  { value: 'votes', label: 'Most Voted' },
+  { value: 'most-voted', label: 'Most Voted' },
   { value: 'oldest', label: 'Oldest' },
 ]
 
@@ -29,8 +39,8 @@ export default function FeedbackBoard() {
     setLoading(true)
     const params = {}
     if (search) params.search = search
-    if (category !== 'All') params.category = category.toLowerCase()
-    if (status !== 'All') params.status = status.toLowerCase().replace(/\s+/g, '-')
+    if (category !== 'All') params.category = category
+    if (status !== 'All') params.status = status
     if (sort) params.sort = sort
     getFeedback(params)
       .then((res) => setFeedback(res.data.feedback || res.data || []))

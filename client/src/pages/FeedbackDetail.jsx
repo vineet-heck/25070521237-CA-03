@@ -21,7 +21,7 @@ function getInitials(name) {
   return name.split(' ').map((n) => n[0]).join('').toUpperCase().slice(0, 2)
 }
 
-const STATUSES = ['planned', 'under-review', 'in-progress', 'completed', 'declined']
+const STATUSES = ['Planned', 'Under Review', 'In Progress', 'Completed', 'Declined']
 
 export default function FeedbackDetail() {
   const { id } = useParams()
@@ -48,8 +48,13 @@ export default function FeedbackDetail() {
       .then((res) => {
         const fb = res.data.feedback || res.data
         setFeedback(fb)
-        setVoted(fb.voters?.includes(user?._id || user?.id) || fb.userVoted || false)
-        setEditForm({ title: fb.title, description: fb.description, status: fb.status || 'planned' })
+        setVoted(
+          fb.votes?.some(v => (v._id || v).toString() === (user?._id || user?.id)?.toString()) ||
+          fb.voters?.includes(user?._id || user?.id) ||
+          fb.userVoted ||
+          false
+        )
+        setEditForm({ title: fb.title, description: fb.description, status: fb.status || 'Planned' })
       })
       .catch((err) => {
         if (err.response?.status === 404) setNotFound(true)
@@ -69,9 +74,10 @@ export default function FeedbackDetail() {
     setVoting(true)
     try {
       const res = await voteFeedback(id)
-      const updated = res.data.feedback || res.data
-      setFeedback((p) => ({ ...p, voteCount: updated.voteCount ?? updated.votes }))
-      setVoted((v) => !v)
+      const count = res.data.voteCount ?? res.data.feedback?.voteCount ?? feedback?.voteCount
+      const newVoted = res.data.voted !== undefined ? res.data.voted : !voted
+      setFeedback((p) => ({ ...p, voteCount: count }))
+      setVoted(newVoted)
     } catch { showToast('Vote failed.', 'error') }
     finally { setVoting(false) }
   }

@@ -678,8 +678,12 @@ All API responses now include standard rate limit headers:
     console.log('👋 Disconnected from MongoDB. Seed finished successfully.');
     process.exit(0);
   } catch (error) {
-    console.error('\n❌ Seed failed:', error);
-    await mongoose.disconnect();
+    console.error('\n❌ Seed failed:', error.message);
+    if (error.message.includes('ECONNREFUSED') || error.message.includes('127.0.0.1:27017')) {
+      console.log('\n💡 Tip: MongoDB Community Server is not running on 127.0.0.1:27017.');
+      console.log('   Please start MongoDB first (e.g., net start MongoDB) before running the seed script.\n');
+    }
+    await mongoose.disconnect().catch(() => {});
     process.exit(1);
   }
 }
